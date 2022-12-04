@@ -61,3 +61,4 @@ def f2(righe):
 
 print(f1(lines))
 print(f2(lines))
+#ciao SIMO
