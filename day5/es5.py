@@ -60,8 +60,41 @@ def f1(righe):
     return''.join(diz[str(indice)][0] for indice in range(1,10))
 
 
+#parte 2 - gli spostamenti multipli vengono fatti in blocco, non seguono piu il pattern LIFO (Last In - First Out)
+
+def f2(righe):
+
+    diz = {}
+    chiavi = [' ']
+    chiavi.extend(car for car in righe[8].strip() )
+    
+    for riga in righe[:8]:
+        riga = riga.strip()
+        for i in range(1,len(riga)-1,4):
+            # print (list(range(1,len(riga)-1,4)))
+            if riga[i].isalnum():
+                try:
+                    diz[chiavi[i]].append(riga[i])
+                except KeyError:
+                    diz[chiavi[i]] = [riga[i]]
+    # print(diz)
+    #ho il dizionario con le crates ordinate dalla piu alta(che esce prima) alla piu bassa
+
+    #ora abbiamo bisogno delle istruzioni da fare
+
+    for n, partenza, arrivo in estraiMosse(righe):
+        n = int(n)
+        #muovo n blocchi dalla lista di partenza a quella di arrivo, lasciando nel solito ordine
+        diz[arrivo] = diz[partenza][:n] + diz[arrivo]
+        #...e lo rimuovo dalla cima della lista di partenza
+        diz[partenza] = diz[partenza][n:]
+
+    #dopo aver fatto tutte le mosse vuole sapere solo i pacchi rimasti in cima a ogni blocco (NB il dizionario non ha un ordinamento)
+
+    return''.join(diz[str(indice)][0] for indice in range(1,10))
 
 
 
-print(f1(lines))
+
+print(f2(lines))
 
