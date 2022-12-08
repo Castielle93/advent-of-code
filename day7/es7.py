@@ -47,3 +47,18 @@ for path in d:
         sum += d[path]
 
 print(sum)
+
+totalSpace  = 70000000
+neededSpace = 30000000   
+print('spazio occupato: {}'.format(d["/"]))
+freeSpace = totalSpace - d["/"]
+
+print(freeSpace)
+
+print(sorted([d[path] for path in d if ((freeSpace + d[path]) >= neededSpace) ]))
+
+print(4036891 + freeSpace)
+print(len(d))
+#
+# [4036891, 4209101, 4266528, 4627421, 5883165, 5914056, 7777617, 11646620, 31660066, 43654485]
+# [4036891, 4209101, 4266528, 4627421, 5883165, 5914056, 7777617, 11646620, 31660066, 43654485]
