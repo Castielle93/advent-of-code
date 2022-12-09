@@ -9,7 +9,7 @@
 
 
 with open('input.txt') as infile:
-    lines = infile.readlines()
+    lines = [line.strip() for line in infile.readlines()]
 
 
 def f1(righe):
@@ -19,7 +19,7 @@ def f1(righe):
     res = 0
     for line in righe:
 
-        line = line.strip()
+        
 
         diz1 = {}
         diz2 = {}
